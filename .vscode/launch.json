@@ -5,17 +5,33 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "debug:app",
+      "name": "debug:app:big",
       "type": "debugpy",
       "request": "launch",
       "module": "main",
       "args": [
         "--input",
-        "data/input.csv",
+        "data/input-big.csv",
         "--output",
         "data/output.csv",
         "--sum",
-        "62"
+        "27000"
+      ],
+      "jinja": true,
+      "justMyCode": true
+    },
+    {
+      "name": "debug:app:small",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "main",
+      "args": [
+        "--input",
+        "data/input-small.csv",
+        "--output",
+        "data/output.csv",
+        "--sum",
+        "500"
       ],
       "jinja": true,
       "justMyCode": true
