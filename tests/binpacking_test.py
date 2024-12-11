@@ -10,7 +10,7 @@ def test_binpacking_small():
         Item(name="item4", weight=4),
         Item(name="item5", weight=60),
     ]
-    capacity = 62
+    capacity = 60
     bins = solve_bin_packing(items, capacity)
 
     # Check all items are included once
