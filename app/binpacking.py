@@ -1,5 +1,3 @@
-from typing import List
-
 from pyomo.environ import (
     Binary,
     ConcreteModel,
@@ -16,7 +14,7 @@ from pyomo.environ import (
 from models.binpacking import Item
 
 
-def solve_bin_packing(items: List[Item], capacity: float) -> List[List[Item]]:
+def solve_bin_packing(items: list[Item], capacity: float) -> list[list[Item]]:
     # Sort items by descending weight to improve MIP performance slightly
     sorted_items = sorted(items, key=lambda x: x.weight, reverse=True)
     n = len(sorted_items)
@@ -108,8 +106,7 @@ def solve_bin_packing(items: List[Item], capacity: float) -> List[List[Item]]:
     return bins
 
 
-def first_fit_decreasing(items: List[Item], capacity: float) -> List[List[Item]]:
-    sorted_items = sorted(items, key=lambda x: x.weight, reverse=True)
+def first_fit_decreasing(sorted_items: list[Item], capacity: float) -> list[list[Item]]:
     bins = []
     for it in sorted_items:
         placed = False
