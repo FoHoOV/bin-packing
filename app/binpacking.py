@@ -16,7 +16,7 @@ from pyomo.environ import (
 from models.binpacking import Item
 
 
-def solve_bin_packing(items: list[Item], capacity: float) -> list[list[Item]]:
+def solve_bin_packing(items: list[Item], capacity: float):
     # Sort items by descending weight to help MIP performance slightly
     sorted_items = sorted(items, key=lambda x: x.weight, reverse=True)
     num_items = len(sorted_items)
@@ -24,8 +24,7 @@ def solve_bin_packing(items: list[Item], capacity: float) -> list[list[Item]]:
     # Check feasibility: if any single item exceeds capacity, no solution is possible
     for item in sorted_items:
         if item.weight > capacity:
-            print("Item heavier than capacity, infeasible.")
-            return []
+            raise ValueError("Item heavier than capacity, infeasible.")
 
     # Use a heuristic (First-Fit Decreasing) to find an initial upper bound on the number of bins
     heuristic_solution = first_fit_decreasing(sorted_items, capacity)
@@ -102,20 +101,20 @@ def solve_bin_packing(items: list[Item], capacity: float) -> list[list[Item]]:
         result.solver.termination_condition != TerminationCondition.optimal
         or result.solver.status != SolverStatus.ok
     ):
-        print("No optimal solution found. Status:", result.solver.status)
-        return []
+        raise ValueError(f"No optimal solution found. Status: {result.solver.status}")
 
     # Extract the final solution
-    final_bins = []
+    final_bins: list[list[Item]] = []
     for bin_index in model.BINS:
         if cast(int, value(model.bin_used[bin_index])) > 0.9999:
-            selected_items = []
+            selected_items: list[Item] = []
             for item_index in model.ITEMS:
                 if cast(int, value(model.item_in_bin[item_index, bin_index])) > 0.9999:
                     selected_items.append(sorted_items[item_index])
             if selected_items:
                 final_bins.append(selected_items)
 
+    check_output(items, final_bins)
     return final_bins
 
 
@@ -134,3 +133,26 @@ def first_fit_decreasing(sorted_items: list[Item], capacity: float) -> list[list
         if not placed:
             bins.append([item])
     return bins
+
+
+def check_output(input: list[Item], output: list[list[Item]]):
+    used: dict[str, bool] = {}
+
+    for bin in output:
+        for item in bin:
+            found = next(
+                filter(
+                    lambda found: found.name == item.name
+                    and found.weight == item.weight,
+                    input,
+                ),
+                None,
+            )
+            if found is None or used.get(item.name, None) is not None:
+                raise Exception("invalid output generated! it's a bug :(")
+            used[item.name] = True
+
+    if len(used.keys()) != len(input):
+        raise Exception(
+            "invalid output generated! it's a bug (all items are not used) :("
+        )
