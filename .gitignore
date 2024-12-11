@@ -1,0 +1,25 @@
+#auto generated
+venv
+.venv
+__pycache__
+dist
+.pytest_cache
+
+# local configs
+.env*
+
+# TMP FILES
+uploads
+
+# Jetbrains 
+.idea
+
+# VisualStudioCode
+.vscode/**/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+.vercel
+data
