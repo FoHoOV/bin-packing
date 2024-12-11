@@ -46,7 +46,7 @@ def solve_bin_packing(items: list[Item], capacity: float):
     )
 
     # Each item must be placed in exactly one bin
-    def one_bin_per_item_rule(model, item_index):
+    def one_bin_per_item_rule(model, item_index: int):
         return (
             quicksum(
                 model.item_in_bin[item_index, bin_index] for bin_index in model.BINS
@@ -57,7 +57,7 @@ def solve_bin_packing(items: list[Item], capacity: float):
     model.one_bin_per_item_con = Constraint(model.ITEMS, rule=one_bin_per_item_rule)
 
     # Capacity constraint: total weight in a bin must not exceed capacity if bin is used
-    def capacity_rule(model, bin_index):
+    def capacity_rule(model, bin_index: int):
         return (
             quicksum(
                 sorted_items[item_index].weight
@@ -71,7 +71,7 @@ def solve_bin_packing(items: list[Item], capacity: float):
 
     # Symmetry breaking: ensure non-increasing usage of bins to avoid symmetric solutions
     # If bin b is used (x[b]=1), then all bins < b must also be used.
-    def symmetry_break_rule(model, bin_index):
+    def symmetry_break_rule(model, bin_index: int):
         if bin_index == 0:
             return Constraint.Skip
         return model.bin_used[bin_index - 1] >= model.bin_used[bin_index]
