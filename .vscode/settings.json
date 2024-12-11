@@ -12,5 +12,5 @@
     "source.organizeImports": "always"
   },
   "isort.check": true,
-  "cSpell.words": ["binpacking", "pydantic", "pytest"]
+  "cSpell.words": ["binpacking", "pydantic", "pytest", "quicksum"]
 }
