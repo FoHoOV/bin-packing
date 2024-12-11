@@ -10,6 +10,7 @@ from models.binpacking import Item
 
 def read_items_from_csv(filepath: str) -> List[Item]:
     items = []
+    print("reading file")
     with open(filepath, "r", newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
@@ -18,10 +19,12 @@ def read_items_from_csv(filepath: str) -> List[Item]:
                 items.append(item)
             except ValidationError as e:
                 sys.stderr.write(f"Invalid row: {row}, error: {e}\n")
+    print("done")
     return items
 
 
 def write_output(filepath: str, bins: List[List[Item]], capacity: float) -> None:
+    print("writing result")
     # Ensure output directory exists
     output_dir = os.path.dirname(filepath)
     if output_dir and not os.path.exists(output_dir):
