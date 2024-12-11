@@ -1,7 +1,7 @@
 from typing import cast
 
+from pyomo.environ import Binary  # type: ignore
 from pyomo.environ import (
-    Binary,
     ConcreteModel,
     Constraint,
     Objective,
