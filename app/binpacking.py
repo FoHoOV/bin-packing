@@ -114,7 +114,7 @@ def solve_bin_packing(items: list[Item], capacity: float):
             if selected_items:
                 final_bins.append(selected_items)
 
-    check_output(items, final_bins)
+    validate_output(items, final_bins)
     return final_bins
 
 
@@ -135,7 +135,7 @@ def first_fit_decreasing(sorted_items: list[Item], capacity: float):
     return bins
 
 
-def check_output(input: list[Item], output: list[list[Item]]):
+def validate_output(input: list[Item], output: list[list[Item]]):
     used: dict[str, bool] = {}
 
     for bin in output:
