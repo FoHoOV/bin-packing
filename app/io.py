@@ -42,7 +42,7 @@ def _write_table(filepath: str, buffer: StringIO):
     )
 
 
-def write_output(filepath: str, bins: list[list[Item]], capacity: float) -> None:
+def write_output(filepath: str, bins: list[list[Item]], capacity: int) -> None:
     print("writing result")
 
     if not filepath.endswith(".csv"):
@@ -53,16 +53,26 @@ def write_output(filepath: str, bins: list[list[Item]], capacity: float) -> None
     if output_dir and not os.path.exists(output_dir):
         os.makedirs(output_dir, exist_ok=True)
 
-    buffer = StringIO()
-    writer = csv.writer(buffer)
-    writer.writerow(["container_id", "name", "weight", "sum"])
-    for bin_index, bin_items in enumerate(bins):
-        total = sum(item.weight for item in bin_items)
-        for item in bin_items:
-            writer.writerow([bin_index + 1, item.name, item.weight, total])
+    buffer = create_buffer(bins, capacity)
 
     buffer.seek(0)
     _write_csv(filepath, buffer)
 
     buffer.seek(0)
     _write_table(filepath, buffer)
+
+
+def create_buffer(bins: list[list[Item]], capacity: int):
+    buffer = StringIO()
+    writer = csv.writer(buffer)
+    writer.writerow(["container_id", "name", "weight", "sum"])
+    total = 0
+    for bin_index, bin_items in enumerate(bins):
+        total_per_pack = sum(item.weight for item in bin_items)
+        total += total_per_pack
+        for item in bin_items:
+            writer.writerow(
+                [bin_index + 1, item.name, item.weight, f"{total_per_pack:,}"]
+            )
+    writer.writerow(["-", "-", f"{total:,}", f"{total:,}"])
+    return buffer

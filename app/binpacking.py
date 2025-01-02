@@ -148,11 +148,14 @@ def check_output(input: list[Item], output: list[list[Item]]):
                 ),
                 None,
             )
+
             if found is None or used.get(item.name, None) is not None:
-                raise Exception("invalid output generated! it's a bug :(")
+                raise Exception(
+                    "invalid output generated! it's a bug: all items are not used :("
+                )
             used[item.name] = True
 
     if len(used.keys()) != len(input):
         raise Exception(
-            "invalid output generated! it's a bug (all items are not used) :("
+            "invalid output generated! it's a bug: all items are not used :("
         )
