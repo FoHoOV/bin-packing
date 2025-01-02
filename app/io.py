@@ -6,7 +6,7 @@ from io import StringIO
 import pandas
 from pydantic import ValidationError
 
-from models.binpacking import Item
+from .models.binpacking import Item
 
 
 def read_items_from_csv(filepath: str) -> list[Item]:
@@ -60,6 +60,8 @@ def write_output(filepath: str, bins: list[list[Item]], capacity: int) -> None:
 
     buffer.seek(0)
     _write_table(filepath, buffer)
+
+    print("done!")
 
 
 def create_buffer(bins: list[list[Item]], capacity: int):

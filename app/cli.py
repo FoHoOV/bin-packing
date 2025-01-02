@@ -1,6 +1,6 @@
 import argparse
 
-from models.cli import Cli
+from .models.cli import Cli
 
 
 def cli():

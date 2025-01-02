@@ -1,5 +1,5 @@
 from app.binpacking import solve_bin_packing
-from models.binpacking import Item
+from app.models.binpacking import Item
 
 
 def test_binpacking_small():

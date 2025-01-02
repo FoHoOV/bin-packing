@@ -13,7 +13,7 @@ from pyomo.environ import (
     value,
 )
 
-from models.binpacking import Item
+from .models.binpacking import Item
 
 
 def solve_bin_packing(items: list[Item], capacity: float):
