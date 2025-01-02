@@ -118,15 +118,15 @@ def solve_bin_packing(items: list[Item], capacity: float):
     return final_bins
 
 
-def first_fit_decreasing(sorted_items: list[Item], capacity: float) -> list[list[Item]]:
+def first_fit_decreasing(sorted_items: list[Item], capacity: float):
     """Heuristic to find an initial bin assignment:
     Sort items in descending order (already sorted), then
     place each item into the first bin it fits into, or create a new bin if none fit."""
-    bins = []
+    bins: list[list[Item]] = []
     for item in sorted_items:
         placed = False
         for bin_contents in bins:
-            if sum(i.weight for i in bin_contents) + item.weight <= capacity:
+            if sum(item.weight for item in bin_contents) + item.weight <= capacity:
                 bin_contents.append(item)
                 placed = True
                 break
