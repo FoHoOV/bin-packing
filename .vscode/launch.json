@@ -11,7 +11,7 @@
       "module": "main",
       "args": [
         "--input",
-        "data/input-big.csv",
+        "data/input-sample-big.csv",
         "--output",
         "data/output.csv",
         "--sum",
@@ -27,7 +27,7 @@
       "module": "main",
       "args": [
         "--input",
-        "data/input-small.csv",
+        "data/input-sample-small.csv",
         "--output",
         "data/output.csv",
         "--sum",

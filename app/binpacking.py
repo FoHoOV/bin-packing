@@ -90,9 +90,6 @@ def solve_bin_packing(items: list[Item], capacity: float):
         model.bin_used[bin_index].set_value(0)  # type: ignore
 
     solver = SolverFactory("cbc")
-    # Optional solver parameters can be set here
-    # solver.options['ratio'] = 0.01  # e.g., set MIP gap tolerance
-    # solver.options['seconds'] = 60  # e.g., set time limit
 
     result = solver.solve(model, tee=True)
 
@@ -119,9 +116,7 @@ def solve_bin_packing(items: list[Item], capacity: float):
 
 
 def first_fit_decreasing(sorted_items: list[Item], capacity: float):
-    """Heuristic to find an initial bin assignment:
-    Sort items in descending order (already sorted), then
-    place each item into the first bin it fits into, or create a new bin if none fit."""
+    """place each item into the first bin it fits into, or create a new bin if none fit."""
     bins: list[list[Item]] = []
     for item in sorted_items:
         placed = False
