@@ -15,6 +15,7 @@ black = "~=24.8.0"
 isort = "~=5.13.2"
 pytest = "~=8.3.3"
 pyinstaller = "*"
+pywin32-ctypes = "*"
 
 [requires]
 python_version = "3.12"
