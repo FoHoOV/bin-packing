@@ -3,8 +3,8 @@ REM Bootstrap launcher for binpacking application
 
 REM Define URLs for the latest versions of the files.
 REM Replace these URLs with the raw URLs from your repository.
-set "MAIN_CMD_URL=https://raw.githubusercontent.com/FoHoOV/bin-packing/main/windows-launcher/main.cmd"
-set "PS1_URL=https://raw.githubusercontent.com/FoHoOV/bin-packing/main/windows-launcher/binpacking.ps1"
+set "MAIN_CMD_URL=https://raw.githubusercontent.com/FoHoOV/bin-packing/refs/heads/main/windows-launcher/main.cmd"
+set "PS1_URL=https://raw.githubusercontent.com/FoHoOV/bin-packing/refs/heads/main/windows-launcher/binpacking.ps1"
 
 REM Set local filenames
 set "LOCAL_MAIN_CMD=main.cmd"
