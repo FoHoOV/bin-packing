@@ -60,9 +60,9 @@ $configPath = Join-Path $rootDir "config.json"
 if (!(Test-Path -Path $configPath)) {
     Write-Output "config.json not found. Creating a dummy config file..."
     $dummyConfig = @{
-        input  = "Path to input CSV file like ./data/somefile.csv"
-        output = "Path to output CSV file like ./data/somefile.csv"
-        sum    = 0
+        input = "data/input-sample-big.csv",
+        output = "data/input-sample-big-out.csv",
+        sum = 27000
     }
     $dummyConfig | ConvertTo-Json -Depth 3 | Out-File -Encoding utf8 $configPath
     Write-Error "A dummy config.json has been created at $configPath. Please update it with valid values and re-run the script."
