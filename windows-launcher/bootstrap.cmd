@@ -25,8 +25,14 @@ REM Download the latest binpacking.ps1
 echo Downloading latest binpacking.ps1...
 powershell -Command "Invoke-WebRequest -Uri '%PS1_URL%' -OutFile '%LOCAL_PS1%' -UseBasicParsing"
 
+REM Change directory to the scripts folder so relative paths resolve correctly
+pushd "%scriptsFolder%"
+
 REM Call the downloaded main.cmd from the scripts folder
 echo Running main.cmd...
-call "%LOCAL_MAIN_CMD%"
+call main.cmd
+
+REM Return to the original folder
+popd
 
 pause
