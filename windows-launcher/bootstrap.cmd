@@ -19,11 +19,11 @@ set "LOCAL_PS1=%scriptsFolder%\binpacking.ps1"
 
 REM Download the latest main.cmd
 echo Downloading latest main.cmd...
-powershell -Command "Invoke-WebRequest -Uri '%MAIN_CMD_URL%' -OutFile '%LOCAL_MAIN_CMD%' -UseBasicParsing"
+powershell -Command "Invoke-WebRequest -Uri '%MAIN_CMD_URL%' -OutFile '%LOCAL_MAIN_CMD%' -Headers @{ 'Cache-Control'='no-cache'; 'Pragma'='no-cache' } -UseBasicParsing"
 
 REM Download the latest binpacking.ps1
 echo Downloading latest binpacking.ps1...
-powershell -Command "Invoke-WebRequest -Uri '%PS1_URL%' -OutFile '%LOCAL_PS1%' -UseBasicParsing"
+powershell -Command "Invoke-WebRequest -Uri '%PS1_URL%' -OutFile '%LOCAL_PS1%' -Headers @{ 'Cache-Control'='no-cache'; 'Pragma'='no-cache' } -UseBasicParsing"
 
 REM Change directory to the scripts folder so relative paths resolve correctly
 pushd "%scriptsFolder%"
