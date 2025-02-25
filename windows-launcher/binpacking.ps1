@@ -92,8 +92,9 @@ Write-Output "Added CBC bin folder ($cbcBinPath) to PATH for this session."
 # =====================================================
 Push-Location $binPackingDir
 python -m pip install pipenv --user
-python -m pipenv install 
-python -m pipenv run main.py $arguments
+python -m pipenv install
+python -m pipenv shell 
+python -m main $arguments
 Pop-Location
 
 Read-Host -Prompt "Press Enter to exit"

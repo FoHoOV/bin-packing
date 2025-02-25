@@ -34,5 +34,3 @@ call main.cmd
 
 REM Return to the original folder
 popd
-
-pause
