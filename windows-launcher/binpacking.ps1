@@ -59,9 +59,14 @@ if (!(Test-Path -Path $binPackingDir)) {
 $configPath = Join-Path $rootDir "config.json"
 if (!(Test-Path -Path $configPath)) {
     Write-Output "config.json not found. Creating a dummy config file..."
+    
+    # Generate paths relative to the root folder
+    $dummyInput = Join-Path $rootDir "data\input-sample-big.csv"
+    $dummyOutput = Join-Path $rootDir "data\input-sample-big-out.csv"
+
     $dummyConfig = @{
-        input = "data/input-sample-big.csv"
-        output = "data/input-sample-big-out.csv"
+        input = $dummyInput
+        output = $dummyOutput
         sum = 27000
     }
     $dummyConfig | ConvertTo-Json -Depth 3 | Out-File -Encoding utf8 $configPath

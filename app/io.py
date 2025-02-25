@@ -36,7 +36,7 @@ def _write_csv(filepath: str, buffer: StringIO):
 def _write_table(filepath: str, buffer: StringIO):
     pandas.read_csv(buffer).to_markdown(
         os.path.join(
-            os.path.dirname(filepath), f"{os.path.basename(filepath)}-pretty.csv"
+            os.path.dirname(filepath), f"{os.path.basename(filepath)}-pretty.csv.txt"
         ),
         index=False,
     )
