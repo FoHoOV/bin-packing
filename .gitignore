@@ -11,7 +11,7 @@ dist
 # TMP FILES
 uploads
 
-# Jetbrains 
+# Jetbrains
 .idea
 
 # VisualStudioCode
@@ -26,3 +26,5 @@ data
 
 main.spec
 build
+
+cbc.exe

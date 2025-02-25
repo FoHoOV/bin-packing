@@ -15,5 +15,8 @@
   "cSpell.words": ["binpacking", "pydantic", "pytest", "quicksum"],
   "[markdown]": {
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
   }
 }
