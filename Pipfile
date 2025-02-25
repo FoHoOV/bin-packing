@@ -8,7 +8,7 @@ pyomo = {extras = ["optional"], version = "*"}
 bcrypt = "~=4.1.3"
 pydantic = "~=2.10.3"
 pydantic-settings = "~=2.0.2"
-pandas = {extras = ["tabulate", "pytables"], version = "*"}
+pandas = {extras = ["hdf5", "output-formatting", "excel"], version = "*"}
 
 [dev-packages]
 black = "~=24.8.0"
