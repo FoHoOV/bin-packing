@@ -1,0 +1,1 @@
+powershell -ExecutionPolicy Bypass -File .\binpacking.ps1

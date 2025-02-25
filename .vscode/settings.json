@@ -12,5 +12,8 @@
     "source.organizeImports": "always"
   },
   "isort.check": true,
-  "cSpell.words": ["binpacking", "pydantic", "pytest", "quicksum"]
+  "cSpell.words": ["binpacking", "pydantic", "pytest", "quicksum"],
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  }
 }
